@@ -18,7 +18,7 @@ import io from 'socket.io-client';
 
 //   useEffect(() => {
 //     socket.on('receiveMessage', (data) => {
-//       document.getElementById('user1').innerHTML = data;
+//       document.getElementById('container').innerHTML = data;
 //       arr.push(data);
 //       console.log(arr);
 //     },[socket])
@@ -27,7 +27,7 @@ import io from 'socket.io-client';
 //   return (
 //     <>
 //       <h1>This is Chat App</h1>
-//       <h2 id='user1'></h2>
+//       <h2 id='container'></h2>
 //       <h2 id='user2'></h2>
 //       <input onChange={(e) => { setmsg(e.target.value) }} placeholder='message...' />
 //       <button onClick={sendMessage}>Send</button>
@@ -40,6 +40,7 @@ import io from 'socket.io-client';
 
 import React, { Component } from 'react';
 
+
 const socket = io.connect('http://localhost:3001');
 let receivedMsgArray = [];
 let sendMsgArray = []
@@ -51,31 +52,30 @@ class App extends Component {
     }
 
   }
-  
+
 
   sendMessage() {
     socket.emit('sendMessage', this.state.msg);
-    document.getElementById('user2').innerHTML = this.state.msg;
+    this.appendMsg(this.state.msg, 'right');
     sendMsgArray.push(this.state.msg);
     console.log(sendMsgArray);
   };
 
   componentWillMount() {
     socket.on('receiveMessage', (data) => {
-      // document.getElementById('user1').innerHTML = data;
-      this.appendMsg(data, 'left')
+      this.appendMsg(data, 'left');
       receivedMsgArray.push(data);
       console.log(receivedMsgArray);
     })
   }
 
   appendMsg(msg, position) {
-    let user1 = document.getElementById('user1');
+    let container = document.getElementById('container');
     let msgEl = document.createElement('h1');
     msgEl.innerText = msg;
     msgEl.classList.add('message');
     msgEl.classList.add(position);
-    user1.append(msgEl);
+    container.append(msgEl);
   }
 
   componentDidMount() {
@@ -98,12 +98,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id='main_container'>
         <h1>This is Chat App</h1>
-        <div id='user1'></div>
-        <h2 id='user2'></h2>
-        <input onChange={(e) => { this.setState({ msg: e.target.value }) }} placeholder='message...' />
-        <button onClick={this.sendMessage.bind(this)}>Send</button>
+        <div id='container'></div>
+          <input id='textInput' onChange={(e) => { this.setState({ msg: e.target.value }) }} placeholder='message...' />
+          <button id='sendBtn' onClick={this.sendMessage.bind(this)}>Send</button>
       </div>
     );
   }

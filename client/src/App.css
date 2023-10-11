@@ -1,3 +1,43 @@
 .App {
   text-align: center;
 }
+
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+#main_container {
+  background: rgb(106, 202, 146);
+  height: 90vh;
+  margin: auto;
+  text-align: center;
+}
+
+.left {
+  width: 30%;
+  margin: 5px;
+  background: rgb(148, 146, 146);
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: auto;
+
+}
+
+.right {
+  width: 30%;
+  margin: 5px;
+  background: rgb(148, 146, 146);
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+#textInput{
+  height: 5%;
+}
+
+#sendBtn{
+  height: 5%;
+  margin: 1%;
+}
