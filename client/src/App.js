@@ -76,6 +76,7 @@ class App extends Component {
     msgEl.classList.add('message');
     msgEl.classList.add(position);
     container.append(msgEl);
+    document.getElementById('textInput').value = '';
   }
 
   componentDidMount() {
@@ -99,10 +100,14 @@ class App extends Component {
   render() {
     return (
       <div id='main_container'>
-        <h1>This is Chat App</h1>
+        <div id="header">
+          <h1>This is Chat App</h1>
+        </div>
         <div id='container'></div>
+        <div id='footer'>
           <input id='textInput' onChange={(e) => { this.setState({ msg: e.target.value }) }} placeholder='message...' />
           <button id='sendBtn' onClick={this.sendMessage.bind(this)}>Send</button>
+        </div>
       </div>
     );
   }

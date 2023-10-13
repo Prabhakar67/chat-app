@@ -1,17 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
 
-#container {
+#header {
   display: flex;
+  justify-content: center;
+}
+
+#footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100vh;
   flex-direction: column;
 }
 
 #main_container {
+  display: flex;
+  flex-direction: column;
   background: rgb(106, 202, 146);
-  height: 90vh;
-  margin: auto;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
+  justify-content: center;
 }
 
 .left {
@@ -33,11 +49,14 @@
   margin-left: auto;
 }
 
-#textInput{
+#textInput {
   height: 5%;
+  width: 40%;
+  margin: 0.5rem;
 }
 
-#sendBtn{
+#sendBtn {
   height: 5%;
-  margin: 1%;
+  width: 5%;
+  margin: 0.5rem;
 }
