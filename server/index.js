@@ -15,12 +15,18 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log(`user Connected ${socket.id}`);
+    console.log(`user joined ${socket.id}`);
+    // let userName = prompt('enter your name');
+    // socket.broadcast.emit('user_joined', userName);
     // console.log(socket);
-    socket.on('sendMessage', (data) => {
-        socket.broadcast.emit('receiveMessage', data);
-        console.log(data);
-    })
+    socket.on('send_Message', (data) => {
+        console.log(`${data} from server`);
+        socket.broadcast.emit('receive_Message', data);
+    });
+
+    socket.on('user_joined', (data)=>{
+        socket.broadcast.emit('user_joined_server', data);
+    });
 })
 
 server.listen(3001, () => {
